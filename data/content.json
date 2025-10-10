@@ -1,0 +1,132 @@
+{
+  "_id": "site",
+  "hero": {
+    "title": "JTS Logistics INC — Truck Dispatch Service that keeps you moving & profitable",
+    "subtitle": "Dedicated dispatchers, top-paying loads, paperwork handled, and 24/7 support for owner-operators and small fleets.",
+    "bullets": [
+      "Top load sourcing & rate negotiation",
+      "Carrier packets",
+      "BOL & invoicing handled",
+      "No long-term contracts"
+    ]
+  },
+  "services": [
+    {
+      "title": "Load Hunting & Dispatch",
+      "text": "We find, negotiate and book the best loads that match your lanes and preferences.",
+      "bullets": [
+        "DAT/123/TA boards + direct shippers",
+        "Lane & schedule preferences respected",
+        "Detention/TONU assistance"
+      ]
+    },
+    {
+      "title": "Paperwork & Compliance",
+      "text": "We handle carrier packets, insurance COI, BOL/POD, invoicing and broker setup.",
+      "bullets": [
+        "Quick setup with e-sign",
+        "Clean audit-ready records",
+        "Factoring coordination"
+      ]
+    },
+    {
+      "title": "Dedicated Support 24/7",
+      "text": "Real humans on call. We manage pickups, deliveries, lumper fees and updates.",
+      "bullets": [
+        "Proactive check calls",
+        "Issue resolution on the spot",
+        "ETA tracking & updates"
+      ]
+    }
+  ],
+  "process": [
+    "Sign up and tell us your lanes, equipment & schedule.",
+    "We source loads and negotiate the best rates for you.",
+    "You approve. We dispatch and handle all paperwork.",
+    "Deliver. Get paid faster with clean documents."
+  ],
+  "pricing": [
+    {
+      "name": "Owner-Operator",
+      "priceText": "10% per load",
+      "features": [
+        "Dedicated dispatcher",
+        "Paperwork & billing",
+        "24/7 support"
+      ]
+    },
+    {
+      "name": "Small Fleet (2–10)",
+      "priceText": "6% per load",
+      "features": [
+        "Priority load sourcing",
+        "Multi-truck coordination",
+        "Weekly performance report"
+      ],
+      "featured": true,
+      "badge": "Most Popular"
+    },
+    {
+      "name": "Custom",
+      "priceText": "Flat monthly",
+      "features": [
+        "Dedicated team",
+        "Direct shipper lanes",
+        "Custom SLAs"
+      ]
+    }
+  ],
+  "stats": [
+    {
+      "value": "24/7",
+      "label": "Live Support"
+    },
+    {
+      "value": "+$0.20",
+      "label": "Avg. RPM Increase*"
+    },
+    {
+      "value": "98%",
+      "label": "On-time Delivery"
+    },
+    {
+      "value": "3k+",
+      "label": "Loads Booked"
+    }
+  ],
+  "tops": [
+    {
+      "rank": "Winner",
+      "name": "Martin Nikolov ",
+      "route": "Veles -> Skopje",
+      "km": "39",
+      "video": "https://www.youtube.com/watch?v=6OfMCEODcA8",
+      "image": "http://localhost:3000/uploads/1760087181123_tops_0.jpg"
+    },
+    {
+      "rank": "Silver",
+      "name": "Angel Ivanovski",
+      "route": "Sveti Nikole -> Shtip",
+      "km": "28",
+      "video": "https://www.youtube.com/watch?v=amJfMzV9Sys",
+      "image": "http://localhost:3000/uploads/1760087208552_tops_1.jpg"
+    },
+    {
+      "rank": "Bronze",
+      "name": "Petko Petkov",
+      "route": "Kisela Voda -> Ilinden",
+      "km": "12",
+      "video": "https://www.youtube.com/watch?v=UGSFEHOASdQ",
+      "image": "http://localhost:3000/uploads/1760087269641_tops_2.jpg"
+    }
+  ],
+  "contact": {
+    "phone": "+1 (555) 123-4567",
+    "email": "dispatch@jtslogistics.com",
+    "location": "Nationwide"
+  },
+  "footer": {
+    "brandText": "JTS Logistics INC"
+  },
+  "updatedAt": "2025-10-10T09:33:50.405Z"
+}
