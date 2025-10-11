@@ -62,9 +62,9 @@
     <div class="hiring-section">
       <h2>Apply as Driver</h2>
       <ul class="contact-list">
-        <li id="contact-phone">📞 +1 (555) 123-4567</li>
-        <li id="contact-email">✉️ dispatch@jtslogistics.com</li>
-        <li id="contact-location">📍 Nationwide</li>
+        <li> 📞<a href="tel:+38978395246" style="color:#083978;font-weight:600;text-decoration:none;">+38978395246</a></li>
+		<li> ✉️ <a href="mailto:dispatch@jtslogistic.com" style="color:#083978;font-weight:600;text-decoration:none;">dispatch@jtslogistics.com</a></li>
+            <li id="contact-location">📍 Nationwide</li>
       </ul>
 
       <form class="contact-form" id="contactForm">
@@ -458,7 +458,7 @@ function handleUserInput(input) {
   else if (text.includes('location')) reply = faqData.location;
   else if (text.includes('contact') || text.includes('phone')) reply = faqData.contact;
   else reply = `🤖 Sorry, I currently don't know the answer to that.<br>
-  But you can always call our team directly at <a href="tel:+1555321114" style="color:#0a3d46;font-weight:bold;">+1 (555) 321-114</a>.`;
+  But you can always call our team directly at <a href="tel:+38978395246" style="color:#083978;font-weight:600;text-decoration:none;">+38978395246</a>.`;
 
   setTimeout(() => addMessage('bot', reply), 500);
 }
