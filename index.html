@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>JTS Logistics INC | Truck Dispatch Service</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="JTS Logistics INC - Professional truck dispatch service for owner-operators and small fleets. 24/7 support, top-paying loads, paperwork handling, and dedicated dispatchers.">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+<header class="site-header">
+  <div class="container nav">
+    <a class="brand" href="#hero">
+      <img src="assets/logo.png" alt="JTS Logistics" class="logo">
+      <span><strong>JTS Logistics</strong></span>
+    </a>
+    <nav class="menu" id="menu">
+      <a href="#pricing">Pricing</a>
+      <a href="#tops">Our Weekly TOPs</a>
+      <a href="#contact" class="apply-link">Careers</a>
+      <a href="#services">Services</a>
+      <a href="#process">Process Steps</a>
+      <a href="#hero">Comercial</a>
+    </nav>
+    <button class="burger" id="burger" aria-label="Open menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<main>
+
+  <!-- Pricing -->
+  <section id="pricing" class="section">
+    <div class="container">
+      <h2 class="section-title">Simple pricing</h2>
+      <div id="pricing-cards" class="pricing"></div>
+      <p class="note">No contracts. Cancel anytime. You keep full control of your schedule.</p>
+    </div>
+  </section>
+
+  <!-- Our Weekly TOPs -->
+  <section id="tops" class="section alt">
+    <div class="container">
+      <h2 class="section-title">Our Weekly TOPs</h2>
+      <div id="tops-wrapper" class="tops-grid"></div>
+    </div>
+  </section>
+
+  <!-- Fullscreen Image Modal -->
+  <div id="imgModal" class="img-modal" aria-hidden="true">
+    <button id="modalClose" class="modal-close" aria-label="Close">✖</button>
+    <img id="modalImg" alt="Preview">
+  </div>
+
+  <!-- Apply as Driver (Contact Info replaced) -->
+<section id="contact" class="section contact pulse-green">
+  <div class="container grid-2">
+
+    <!-- ЛЕВА СТРАНА -->
+    <div class="hiring-section">
+      <h2>Apply as Driver</h2>
+      <ul class="contact-list">
+        <li id="contact-phone">📞 +1 (555) 123-4567</li>
+        <li id="contact-email">✉️ dispatch@jtslogistics.com</li>
+        <li id="contact-location">📍 Nationwide</li>
+      </ul>
+
+      <form class="contact-form" id="contactForm">
+       <label><span>Full Name</span><input type="text" name="name" required></label>
+        <label><span>Email</span><input type="email" name="email" required></label>
+        <label><span>Phone</span><input type="tel" name="phone"></label>
+        <label><span>Message</span><textarea name="message" rows="4" required></textarea></label>
+		<label><span>Attach Document (optional)</span>
+  <input type="file" name="attachment" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png">
+</label>
+
+        <button type="submit" class="btn btn-block">Send Application</button>
+        <p class="form-note" id="formNote"></p>
+      </form>
+    </div>
+
+    <!-- ДЕСНА СТРАНА -->
+    <div class="hiring-section">
+      <h2>Hiring Dispatch Operator</h2>
+
+      <a href="https://www.facebook.com/jtslogisticsinc" target="_blank" class="hiring-img-link">
+  <img src="https://scontent.fskp1-2.fna.fbcdn.net/v/t39.30808-6/557999434_122244452402062692_1986830005324460143_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=127cfc&_nc_ohc=COD2rqF7oZIQ7kNvwGaq5f4&_nc_oc=AdkWiGPPR0wQ02g_qD5rSag1_aykA9ck6BlM_qODJpdwle_egPIY6f7NGsubXvm_8RI&_nc_zt=23&_nc_ht=scontent.fskp1-2.fna&_nc_gid=dTvvydmJqBR0A4Pfmq35yw&oh=00_AffoeEQCZMNvK-ARkr-M86F7cEd5MPbNcItbwgXATCgSBw&oe=68EEB165" alt="Hiring" class="hiring-img">
+</a>
+
+
+      <a href="https://wa.me/38978235114" target="_blank" class="btn apply-btn">Apply</a>
+    </div>
+
+  </div>
+</section>
+
+
+  <!-- Services -->
+  <section id="services" class="section">
+    <div class="container">
+      <h2 class="section-title">What we do</h2>
+      <p class="section-subtitle">Everything you need to keep wheels turning and cashflow steady.</p>
+      <div id="services-cards" class="cards"></div>
+    </div>
+  </section>
+
+  <!-- Process Steps -->
+  <section id="process" class="section alt">
+    <div class="container">
+      <h2 class="section-title">How it works</h2>
+      <ol id="process-steps" class="steps"></ol>
+    </div>
+  </section>
+
+  <!-- Hero Section -->
+  <section id="hero" class="hero hero-animated">
+    <div class="bg-candy"></div>
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <h1 id="hero-title">JTS Logistics INC</h1>
+        <p id="hero-subtitle">Truck Dispatch Service that keeps you moving & profitable</p>
+        <div class="hero-actions">
+          <a href="#contact" class="btn btn-lg btn-green">Apply as Driver</a>
+          <a href="https://wa.me/38978395246" target="_blank" rel="noopener" class="btn btn-outline btn-lg">Contact Us Directly</a>
+        </div>
+        <ul id="hero-bullets" class="hero-bullets">
+          <li>Top load sourcing & rate negotiation</li>
+          <li>Carrier packets, BOL & invoicing handled</li>
+          <li>No long-term contracts</li>
+        </ul>
+      </div>
+      <div class="hero-media video-frame">
+        <iframe class="yt" src="https://www.youtube.com/embed/xLMiS5gS8d0?playlist=xLMiS5gS8d0&autoplay=1&mute=1&loop=1&controls=0&modestbranding=1&rel=0&playsinline=1" title="JTS Logistics video" frameborder="0" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div>
+      <a class="brand invert" href="#hero">
+        <img src="assets/logo.png" class="logo" alt="">
+        <span>JTS Logistics INC</span>
+      </a>
+      <p class="small">Professional truck dispatch service for owner-operators and small fleets.</p>
+    </div>
+    <nav class="footer-nav">
+      <a href="#pricing">Pricing</a>
+      <a href="#tops">Our Weekly TOPs</a>
+      <a href="#contact">Apply as Driver</a>
+      <a href="#services">Services</a>
+      <a href="#process">Process Steps</a>
+      <a href="#hero">Hero Section</a>
+    </nav>
+    <div class="small">© <span id="year"></span> JTS Logistics INC. All rights reserved.</div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+<script src="site-content.js"></script>
+
+</body>
+</html>

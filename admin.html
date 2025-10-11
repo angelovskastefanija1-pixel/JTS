@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Admin Panel - JTS Logistics INC</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+  <header>
+    <h1>JTS Logistics — Admin Panel</h1>
+  </header>
+
+  <!-- LOGIN SECTION -->
+  <main>
+    <section id="login-box" class="card">
+      <h2>Login</h2>
+      <label>Username <input id="u" value="admin"></label>
+      <label>Password <input id="p" type="password" value="1234"></label>
+      <button id="login">Login</button>
+      <p id="login-note"></p>
+    </section>
+
+    <!-- ADMIN DASHBOARD -->
+    <section id="editor" style="display:none" class="card">
+      <div class="topbar">
+        <div id="role-pill" class="pill"></div>
+        <button id="logout">Logout</button>
+        <button id="refresh">Reload Content</button>
+        <button id="save" class="primary">Save Changes</button>
+      </div>
+
+
+      <!-- Weekly TOPS -->
+      <details open id="topsSection">
+        <summary><b>Our Weekly TOPs</b></summary>
+        <div class="row">
+          <div class="card">
+            <h3>🥇 Winner</h3>
+            <label>YouTube Video Link <input id="tops.0.video"></label>
+            <label>Image <input type="file" id="tops.0.image" accept="image/*"></label>
+            <img id="tops.0.preview" class="preview" alt="Preview">
+            <button class="upload" data-index="0">Upload Image</button>
+            <label>Name <input id="tops.0.name"></label>
+            <label>Route <input id="tops.0.route"></label>
+            <label>Kilometers <input id="tops.0.km" type="number" min="0"></label>
+          </div>
+
+          <div class="card">
+            <h3>🥈 Silver</h3>
+            <label>YouTube Video Link <input id="tops.1.video"></label>
+            <label>Image <input type="file" id="tops.1.image" accept="image/*"></label>
+            <img id="tops.1.preview" class="preview" alt="Preview">
+            <button class="upload" data-index="1">Upload Image</button>
+            <label>Name <input id="tops.1.name"></label>
+            <label>Route <input id="tops.1.route"></label>
+            <label>Kilometers <input id="tops.1.km" type="number" min="0"></label>
+          </div>
+
+          <div class="card">
+            <h3>🥉 Bronze</h3>
+            <label>YouTube Video Link <input id="tops.2.video"></label>
+            <label>Image <input type="file" id="tops.2.image" accept="image/*"></label>
+            <img id="tops.2.preview" class="preview" alt="Preview">
+            <button class="upload" data-index="2">Upload Image</button>
+            <label>Name <input id="tops.2.name"></label>
+            <label>Route <input id="tops.2.route"></label>
+            <label>Kilometers <input id="tops.2.km" type="number" min="0"></label>
+          </div>
+        </div>
+      </details>
+
+      <!-- INBOX SECTION -->
+      <details open id="inboxSection">
+        <summary><b>Inbox Messages</b></summary>
+        <div class="inbox-wrapper">
+          <table id="inboxTable">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Message</th>
+                <th>Date</th>
+				<th>Attachment</th>
+				
+  </thead>
+  <tbody id="inbox"></tbody>
+</table>
+        </div>
+      </details>
+
+      <!-- SITE PREVIEW -->
+      <details open>
+        <summary><b>Live Preview</b></summary>
+        <iframe id="sitePreview" src="/" width="100%" height="500" style="border:1px solid #ccc;border-radius:8px;"></iframe>
+      </details>
+    </section>
+  </main>
+
+  <script src="site-content-admin.js"></script>
+</body>
+</html>
