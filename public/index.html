@@ -72,9 +72,9 @@
         <label><span>Email</span><input type="email" name="email" required></label>
         <label><span>Phone</span><input type="tel" name="phone"></label>
         <label><span>Message</span><textarea name="message" rows="4" required></textarea></label>
-		<label><span>Attach Document (optional)</span>
-  <input type="file" name="attachment" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png">
-</label>
+        <label><span>Attach Document (optional)</span>
+          <input type="file" name="attachment" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png">
+        </label>
 
         <button type="submit" class="btn btn-block">Send Application</button>
         <p class="form-note" id="formNote"></p>
@@ -86,15 +86,20 @@
       <h2>Hiring Dispatch Operator</h2>
 
       <a href="https://www.facebook.com/jtslogisticsinc" target="_blank" class="hiring-img-link">
-  <img src="https://scontent.fskp1-2.fna.fbcdn.net/v/t39.30808-6/557999434_122244452402062692_1986830005324460143_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=127cfc&_nc_ohc=COD2rqF7oZIQ7kNvwGaq5f4&_nc_oc=AdkWiGPPR0wQ02g_qD5rSag1_aykA9ck6BlM_qODJpdwle_egPIY6f7NGsubXvm_8RI&_nc_zt=23&_nc_ht=scontent.fskp1-2.fna&_nc_gid=dTvvydmJqBR0A4Pfmq35yw&oh=00_AffoeEQCZMNvK-ARkr-M86F7cEd5MPbNcItbwgXATCgSBw&oe=68EEB165" alt="Hiring" class="hiring-img">
-</a>
-
+        <img src="https://scontent.fskp1-2.fna.fbcdn.net/v/t39.30808-6/557999434_122244452402062692_1986830005324460143_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=127cfc&_nc_ohc=COD2rqF7oZIQ7kNvwGaq5f4&_nc_oc=AdkWiGPPR0wQ02g_qD5rSag1_aykA9ck6BlM_qODJpdwle_egPIY6f7NGsubXvm_8RI&_nc_zt=23&_nc_ht=scontent.fskp1-2.fna&_nc_gid=dTvvydmJqBR0A4Pfmq35yw&oh=00_AffoeEQCZMNvK-ARkr-M86F7cEd5MPbNcItbwgXATCgSBw&oe=68EEB165" alt="Hiring" class="hiring-img">
+      </a>
 
       <a href="https://wa.me/38978235114" target="_blank" class="btn apply-btn">Apply</a>
     </div>
 
   </div>
 </section>
+<!-- Route Image Modal -->
+<div id="routeModal" class="img-modal" aria-hidden="true">
+  <button id="routeClose" class="modal-close" aria-label="Close">✖</button>
+  <img id="routeImg" alt="Route Image">
+</div>
+
 
 
   <!-- Services -->
@@ -123,7 +128,7 @@
         <p id="hero-subtitle">Truck Dispatch Service that keeps you moving & profitable</p>
         <div class="hero-actions">
           <a href="#contact" class="btn btn-lg btn-green">Apply as Driver</a>
-          <a href="https://wa.me/38978395246" target="_blank" rel="noopener" class="btn btn-outline btn-lg">Contact Us Directly</a>
+          <a href="https://wa.me/38978235114" target="_blank" rel="noopener" class="btn btn-outline btn-lg">Contact Us Directly</a>
         </div>
         <ul id="hero-bullets" class="hero-bullets">
           <li>Top load sourcing & rate negotiation</li>
@@ -154,14 +159,329 @@
       <a href="#contact">Apply as Driver</a>
       <a href="#services">Services</a>
       <a href="#process">Process Steps</a>
-      <a href="#hero">Hero Section</a>
+      <a href="#hero">Comercial</a>
     </nav>
-    <div class="small">© <span id="year"></span> JTS Logistics INC. All rights reserved.</div>
+    <div class="small">© <span id="year"></span> JTS Logistics INC. <BR>All rights reserved.</div>
   </div>
 </footer>
 
 <script src="script.js"></script>
 <script src="site-content.js"></script>
 
+<!-- Pricing Popup Modal -->
+<div id="priceModal" class="modal">
+  <div class="modal-content">
+    <button class="modal-close" id="closeModal">✖</button>
+    <h2 id="modalTitle"></h2>
+    <p id="modalText"></p>
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const pc = document.getElementById('pricing-cards');
+  const plans = [
+    {
+      name: "Owner-Operator",
+      price: "10% per Load<BR> it's not a joke",
+      text: `
+        <strong>Offer for Owner Operators</strong><br><br>
+• We offer promotional 10% from Gross take home 90% from Gross<br>
+• If your driving record is clean, we charge $350 per week for insurance.<br>
+• 53-foot dry van rental is $250 per week (2020 to 2025)<br>
+• Flat Bad 53 rental $350 per week<br>
+<br>• paycheck is calculated weekly whatever he submits BOL from Tuesday to Monday he will receive his money by following Friday by ACH.
+• ELD 24/7 support etc. This service is $45 per week.<br>
+• The ELD do max with Recap hours<br>
+• Our company is set up with almost all brokers and our safety score is perfect and we try to keep it that way.<br>
+• For each CLEAN DOT inspection, we pay $300<br>
+• Dedicated runs available for dry vans gross for single drivers from $6k to10 k weekly<br>
+• Flat Bad gross weekly from 8k to 12 k weekly<br>
+• Driver escrow is $2500 we deduct them on 10 instalments like $250 per paycheck. First 10 paychecks<br>
+<br><br>
+        <em> Maximum independence.</em>
+       
+      `
+    
+	},
+    {
+      name: "Small Fleet (2–10)",
+      price: "6% per Load",
+      text: `
+        <strong>6% per Load</strong><br><br>
+        🚚 Ideal for fleets (2–5 trucks).<br>
+        Dedicated dispatcher for each driver.<br>
+        Negotiated premium loads and faster payments.<br>
+        Weekly performance reports.<br><br>
+        <em>Let us handle logistics while you focus on driving.</em>
+      `
+    },
+    {
+      name: "Flat Monthly",
+      price: "$499/mo",
+      text: `
+        <strong>Flat Monthly</strong><br><br>
+        💰 Fixed cost for unlimited loads.<br>
+        ✅ Predictable monthly expense — no per-load %.<br>
+        ✅ Priority dispatcher and direct line support.<br>
+        ✅ Best option for long-term carriers.<br><br>
+        <em>Full freedom. Transparent cost. Maximum independence.</em>
+      `
+    }
+  ];
+
+  plans.forEach(p => {
+    const card = document.createElement('div');
+    card.className = 'price-card';
+    card.innerHTML = `
+      <h3>${p.name}</h3>
+      <p class="price"><span>${p.price}</span></p>
+      <p class="tap">(<em>👆🏼 Tap for details</em>)</p>
+    `;
+    card.addEventListener('click', () => openPriceModal(p.name, p.text));
+    pc.appendChild(card);
+  });
+
+  const modal = document.getElementById('priceModal');
+  const modalTitle = document.getElementById('modalTitle');
+  const modalText = document.getElementById('modalText');
+  const closeModal = document.getElementById('closeModal');
+
+  function openPriceModal(title, text) {
+    modalTitle.innerHTML = title;
+    modalText.innerHTML = text;
+    modal.classList.add('open');
+  }
+
+  closeModal.addEventListener('click', () => modal.classList.remove('open'));
+  modal.addEventListener('click', (e) => { if (e.target === modal) modal.classList.remove('open'); });
+});
+</script>
+<!-- 🟢 Floating Chat -->
+<style>
+/* ---- CHAT STYLE ---- */
+.chat-container {
+  position: fixed;
+  bottom: 90px;
+  right: 20px;
+  width: 320px;
+  height: 400px;
+  background: white;
+  border: 2px solid #0a3d46;
+  border-radius: 14px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.25);
+  display: none;
+  flex-direction: column;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.4s ease;
+  z-index: 9999;
+}
+.chat-container.show {
+  display: flex;
+  opacity: 1;
+  transform: translateY(0);
+}
+.chat-header {
+  background: #0a3d46;
+  color: #fff;
+  padding: 10px;
+  cursor: move;
+  font-weight: 700;
+  text-align: center;
+  user-select: none;
+}
+.chat-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 10px;
+  background: #f8fafc;
+  display: flex;
+  flex-direction: column;
+}
+.message {
+  margin: 8px 0;
+  padding: 10px 14px;
+  border-radius: 10px;
+  max-width: 80%;
+  line-height: 1.4;
+  font-size: 14px;
+}
+.message.user {
+  background: #e0f7f5;
+  align-self: flex-end;
+}
+.message.bot {
+  background: #e5e5e5;
+  align-self: flex-start;
+}
+.chat-input {
+  display: flex;
+  border-top: 1px solid #ccc;
+}
+.chat-input input {
+  flex: 1;
+  border: none;
+  padding: 10px;
+  outline: none;
+}
+.chat-input button {
+  background: #0a3d46;
+  color: #fff;
+  border: none;
+  padding: 10px 14px;
+  cursor: pointer;
+}
+#chatToggle {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #0a3d46;
+  color: #fff;
+  padding: 12px 16px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 22px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.3);
+  z-index: 9999;
+}
+/* копчиња за прашања */
+.chat-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 6px;
+}
+.chat-options button {
+  background: #0a3d46;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 6px 10px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.chat-options button:hover {
+  background: #096c6c;
+}
+</style>
+
+<div id="chatToggle">💬</div>
+
+<div class="chat-container">
+  <div class="chat-header">Chat...</div>
+  <div class="chat-body" id="chatBody"></div>
+  <div class="chat-input">
+    <input type="text" id="chatInput" placeholder="Type your question...">
+    <button id="sendBtn">Send</button>
+  </div>
+</div>
+
+<script>
+// ---- CHAT SCRIPT ----
+const chatContainer = document.querySelector('.chat-container');
+const chatHeader = document.querySelector('.chat-header');
+const chatBody = document.getElementById('chatBody');
+const chatInput = document.getElementById('chatInput');
+const sendBtn = document.getElementById('sendBtn');
+const chatToggle = document.getElementById('chatToggle');
+
+let isDragging = false;
+let offsetX, offsetY;
+
+// draggable
+chatHeader.addEventListener('mousedown', (e) => {
+  isDragging = true;
+  offsetX = e.clientX - chatContainer.offsetLeft;
+  offsetY = e.clientY - chatContainer.offsetTop;
+  chatHeader.style.cursor = 'grabbing';
+});
+document.addEventListener('mouseup', () => {
+  isDragging = false;
+  chatHeader.style.cursor = 'move';
+});
+document.addEventListener('mousemove', (e) => {
+  if (isDragging) {
+    chatContainer.style.left = `${e.clientX - offsetX}px`;
+    chatContainer.style.top = `${e.clientY - offsetY}px`;
+    chatContainer.style.right = 'auto';
+    chatContainer.style.bottom = 'auto';
+  }
+});
+
+// додај порака
+function addMessage(sender, text) {
+  const div = document.createElement('div');
+  div.className = `message ${sender}`;
+  div.innerHTML = text;
+  chatBody.appendChild(div);
+  chatBody.scrollTop = chatBody.scrollHeight;
+}
+
+// chatbot логика
+const faqData = {
+  "pricing": "💰 Our pricing is simple: 10% per load, 6% for fleets, or a flat monthly plan — no hidden fees.",
+  "apply": "📝 You can apply as a driver directly through the form on our website or send your info via email to dispatch@jtslogistics.com.",
+  "services": "⚙️ We provide 24/7 dispatching, rate negotiation, paperwork handling, and premium load sourcing.",
+  "location": "📍 We operate nationwide across the USA.",
+  "contact": "📞 You can reach our support team anytime at +1 (555) 321-114."
+};
+
+function showWelcomeMessage() {
+  addMessage('bot', `
+    👋 Hello! Welcome to <strong>JTS Logistics Assistant</strong>.<br>
+    How can I help you today?<br><br>
+  `);
+
+  const options = document.createElement('div');
+  options.className = 'chat-options';
+  ["Pricing 💰", "Apply as Driver 📝", "Services ⚙️", "Location 📍", "Contact ☎️"].forEach(option => {
+    const btn = document.createElement('button');
+    btn.textContent = option;
+    btn.onclick = () => handleUserInput(option.toLowerCase());
+    options.appendChild(btn);
+  });
+  chatBody.appendChild(options);
+}
+
+// обработка на пораки
+function handleUserInput(input) {
+  const text = input.toLowerCase();
+  addMessage('user', input);
+
+  let reply = null;
+  if (text.includes('price')) reply = faqData.pricing;
+  else if (text.includes('apply')) reply = faqData.apply;
+  else if (text.includes('service')) reply = faqData.services;
+  else if (text.includes('location')) reply = faqData.location;
+  else if (text.includes('contact') || text.includes('phone')) reply = faqData.contact;
+  else reply = `🤖 Sorry, I currently don't know the answer to that.<br>
+  But you can always call our team directly at <a href="tel:+1555321114" style="color:#0a3d46;font-weight:bold;">+1 (555) 321-114</a>.`;
+
+  setTimeout(() => addMessage('bot', reply), 500);
+}
+
+// испраќање порака
+sendBtn.onclick = () => {
+  const text = chatInput.value.trim();
+  if (!text) return;
+  handleUserInput(text);
+  chatInput.value = '';
+};
+
+// toggle отварање
+chatToggle.onclick = () => {
+  chatContainer.classList.toggle('show');
+  if (chatContainer.classList.contains('show') && chatBody.children.length === 0) {
+    showWelcomeMessage();
+  }
+};
+</script>
+
+
+
 </body>
 </html>
+

@@ -200,6 +200,7 @@ app.get('/api/admin/messages', requireAuth, (_req, res) => {
 
 
 app.use('/uploads', express.static(path.join(__dirname, 'public', 'uploads')));
+app.use(express.static(path.join(__dirname, 'public')));
 // 🟢 MESSAGES + UPLOADS
 app.get('/api/admin/messages', requireAuth, (_req, res) => {
   const msgs = readJSON(MSG_FILE) || [];
@@ -234,32 +235,34 @@ app.post('/api/admin/tops/:index/image', requireAuth, uploadSingle.single('image
       return res.status(400).json({ ok: false, error: 'No image uploaded' });
     }
 
-    const uploaded = req.file.path;
-    const optimizedName = `${Date.now()}_tops_${idx}.jpg`;
-    const optimizedPath = path.join(UPLOADS_DIR, optimizedName);
+    // 🧹 Избриши ја старата (ако постои)
+    const existing = readJSON(CONTENT_FILE) || {};
+    if (existing.tops && existing.tops[idx] && existing.tops[idx].image) {
+      const oldPath = path.join(__dirname, 'public', existing.tops[idx].image);
+      if (fs.existsSync(oldPath)) fs.unlinkSync(oldPath);
+    }
 
-    // Optimize and resize
-    await sharp(uploaded)
+    // 🧠 Ново име според позицијата
+    const names = ['1', '2', '3'];
+    const newName = `${names[idx]}.jpg`;
+    const newPath = path.join(UPLOADS_DIR, newName);
+
+    // Оптимизирај и зачувај
+    await sharp(req.file.path)
       .resize(1200, 800, { fit: 'cover' })
       .jpeg({ quality: 85 })
-      .toFile(optimizedPath);
+      .toFile(newPath);
 
-    // Delete original
-    try { fs.unlinkSync(uploaded); } catch (_) {}
+    fs.unlinkSync(req.file.path);
 
-    // Update content.json
-    const relPath = `/uploads/${optimizedName}`;
-    const content = readJSON(CONTENT_FILE) || {};
-    if (!Array.isArray(content.tops)) content.tops = [{}, {}, {}];
+    // 🚀 Ажурирај content.json
     const ranks = ['Winner', 'Silver', 'Bronze'];
-    content.tops[idx] = {
-      ...content.tops[idx],
-      rank: ranks[idx],
-      image: relPath
-    };
-    writeJSON(CONTENT_FILE, content);
+    const relPath = `/uploads/${newName}`;
+    if (!Array.isArray(existing.tops)) existing.tops = [{}, {}, {}];
+    existing.tops[idx] = { ...existing.tops[idx], rank: ranks[idx], image: relPath };
+    writeJSON(CONTENT_FILE, existing);
 
-    return res.json({ ok: true, path: relPath });
+    res.json({ ok: true, path: relPath });
   } catch (err) {
     console.error('❌ upload error', err);
     res.status(500).json({ ok: false, error: err.message });

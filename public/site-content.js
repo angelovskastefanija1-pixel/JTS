@@ -50,6 +50,36 @@ function mountImageModal() {
   return { open, close };
 }
 const modalApi = mountImageModal();
+// ---------- ROUTE IMAGE MODAL ----------
+function mountRouteModal() {
+  const modal = document.getElementById('routeModal');
+  const modalImg = document.getElementById('routeImg');
+  const closeBtn = document.getElementById('routeClose');
+
+  function open(src) {
+    modalImg.src = src;
+    modal.classList.add('open');
+    modal.setAttribute('aria-hidden', 'false');
+  }
+
+  function close() {
+    modal.classList.remove('open');
+    modal.setAttribute('aria-hidden', 'true');
+    modalImg.src = '';
+  }
+
+  closeBtn.addEventListener('click', close);
+  modal.addEventListener('click', (e) => { if (e.target === modal) close(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
+
+  return { open, close };
+}
+
+const routeModalApi = mountRouteModal();
+function openRouteModal(src) {
+  routeModalApi.open(src);
+}
+
 
 // ---------- TOP CARDS RENDER ----------
 function renderTops(tops) {
@@ -112,11 +142,20 @@ function renderTops(tops) {
       <div class="rank">${rank === 'Winner' ? '🥇 Winner' : rank === 'Silver' ? '🥈 Silver' : '🥉 Bronze'}</div>
       <div class="name">${t.name || '—'}</div>
       <div class="meta">Route: ${t.route || '—'} · ${t.km || ''} miles</div>
-      <a class="map" href="${mapLinkForRoute(t.route || '')}" target="_blank" rel="noopener">Open in Google Maps</a>
-    `;
+<button class="view-route-btn" data-img="${t.routeImage || ''}">View Route</button>    `;
     card.appendChild(body);
 
     wrap.appendChild(card);
+	// View Route image on click
+card.querySelector('.view-route-btn').addEventListener('click', (e) => {
+  const imgUrl = e.target.getAttribute('data-img');
+  if (!imgUrl) {
+    alert('No route image available.');
+    return;
+  }
+  openRouteModal(imgUrl);
+});
+
   });
 }
 
@@ -158,21 +197,27 @@ async function loadContent() {
       ps.appendChild(li);
     });
 
-    // PRICING
-    const pc = document.getElementById('pricing-cards');
-    pc.innerHTML = '';
-    (c.pricing || []).forEach(p => {
-      const wrap = document.createElement('div');
-      wrap.className = 'price-card' + (p.featured ? ' featured' : '');
-      const badge = p.badge ? `<div class="badge">${p.badge}</div>` : '';
-      wrap.innerHTML = `${badge}<h3>${p.name || ''}</h3><p class="price"><span>${p.priceText || ''}</span></p>`;
-      pc.appendChild(wrap);
-    });
+   
 
-    // TOPS (Images + Videos)
+    // ---------- MODAL ----------
+    const modal = document.getElementById('priceModal');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalText = document.getElementById('modalText');
+    const closeModal = document.getElementById('closeModal');
+
+    function openPriceModal(title, text) {
+      modalTitle.innerHTML = title;
+      modalText.innerHTML = text;
+      modal.classList.add('open');
+    }
+
+    closeModal.addEventListener('click', () => modal.classList.remove('open'));
+    modal.addEventListener('click', (e) => { if (e.target === modal) modal.classList.remove('open'); });
+
+    // ---------- TOPS ----------
     renderTops(c.tops);
 
-    // CONTACT INFO
+    // ---------- CONTACT ----------
     document.getElementById('contact-phone').textContent = `📞 ${c.contact?.phone || ''}`;
     document.getElementById('contact-email').textContent = `✉️ ${c.contact?.email || ''}`;
     document.getElementById('contact-location').textContent = `📍 ${c.contact?.location || ''}`;

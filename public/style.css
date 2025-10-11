@@ -348,3 +348,224 @@ html,body{margin:0;padding:0;font-family:Inter,system-ui,Segoe UI,Roboto,Arial,s
   background-color: #064747;
   transform: translateY(-2px);
 }
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.modal.open {
+  display: flex;
+}
+
+.modal-content {
+  background: #fff;
+  border-radius: 14px;
+  padding: 24px 28px;
+  max-width: 420px;
+  width: 90%;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+  position: relative;
+  text-align: center;
+  animation: fadeIn 0.3s ease;
+}
+
+.modal-content h2 {
+  margin-top: 0;
+  color: #04252a;
+}
+
+.modal-content p {
+  color: #475569;
+  line-height: 1.6;
+}
+
+.modal-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  border: none;
+  background: #ddd;
+  color: #000;
+  border-radius: 50%;
+  width: 26px;
+  height: 26px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+.modal-close:hover {
+  background: #bbb;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+/* ---------- TAP FOR DETAILS (Pulse Effect) ---------- */
+.tap {
+  font-size: 0.9rem;
+  color: #00994d;
+  font-weight: 600;
+  text-align: center;
+  margin-top: 6px;
+  animation: pulseText 2.5s infinite ease-in-out;
+}
+
+@keyframes pulseText {
+  0% { opacity: 0.5; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.07); }
+  100% { opacity: 0.5; transform: scale(1); }
+}
+
+/* ---------- PRICE CARD BASE ---------- */
+.price-card {
+  position: relative;
+  padding: 25px;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.price-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+}
+
+/* ---------- 10% per Load Card (Green Glow) ---------- */
+.price-card:nth-child(1) {
+  border: 3px solid #00a651; /* base green */
+  animation: greenGlow 3s ease-in-out infinite;
+}
+
+@keyframes greenGlow {
+  0% {
+    box-shadow: 0 0 8px rgba(0, 166, 81, 0.2),
+                0 0 14px rgba(0, 166, 81, 0.3),
+                inset 0 0 6px rgba(0, 166, 81, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 16px rgba(0, 200, 83, 0.45),
+                0 0 28px rgba(0, 230, 118, 0.6),
+                inset 0 0 10px rgba(0, 230, 118, 0.6);
+  }
+  100% {
+    box-shadow: 0 0 8px rgba(0, 166, 81, 0.2),
+                0 0 14px rgba(0, 166, 81, 0.3),
+                inset 0 0 6px rgba(0, 166, 81, 0.3);
+  }
+}
+/* ---------- Route Modal ---------- */
+.img-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.img-modal.open {
+  display: flex;
+}
+
+.img-modal img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 8px;
+  box-shadow: 0 0 15px #000;
+  transition: transform 0.3s;
+}
+
+.modal-close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  background: #fff;
+  color: #000;
+  font-size: 1.4rem;
+  border: none;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+}
+
+.modal-close:hover {
+  background: #083978;
+  color: #fff;
+}
+
+/* Button for View Route */
+.view-route-btn {
+  margin-top: 8px;
+  padding: 8px 14px;
+  background: #083978;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.view-route-btn:hover {
+  background: #052b61;
+}
+/* ---------- PRICE MODAL ---------- */
+#priceModal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+#priceModal.open {
+  display: flex;
+}
+
+/* Внатрешниот прозорец */
+.modal-content {
+  background: #fff;
+  border-radius: 12px;
+  padding: 24px;
+  width: 90%;
+  max-width: 480px;
+  max-height: 80vh; /* ✅ Ограничување на висината */
+  overflow-y: auto; /* ✅ Овозможува вертикално скролање */
+  box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+  position: relative;
+  animation: fadeIn 0.3s ease;
+}
+
+/* X копче */
+.modal-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: transparent;
+  border: none;
+  font-size: 22px;
+  font-weight: bold;
+  cursor: pointer;
+  color: #333;
+}
+
+/* Анимација при отворање */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+

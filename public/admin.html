@@ -5,15 +5,23 @@
   <title>Admin Panel - JTS Logistics INC</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="admin.css">
+  <style>
+    .img-url-box { margin-top: 6px; }
+    .img-url-box input { width: 100%; padding: 6px; border-radius: 6px; border: 1px solid #ccc; }
+    .preview { margin-top: 10px; max-width: 100%; border-radius: 8px; display: none; }
+    .preview.shown { display: block; }
+    .preview-btn { margin-top: 4px; padding: 6px 10px; border-radius: 6px; border: none; background: #00A6A6; color: #fff; cursor: pointer; }
+    .preview-btn:hover { background: #018a8a; }
+  </style>
 </head>
-<body>
 
+<body>
   <header>
     <h1>JTS Logistics — Admin Panel</h1>
   </header>
 
-  <!-- LOGIN SECTION -->
   <main>
+    <!-- LOGIN SECTION -->
     <section id="login-box" class="card">
       <h2>Login</h2>
       <label>Username <input id="u" value="admin"></label>
@@ -31,43 +39,65 @@
         <button id="save" class="primary">Save Changes</button>
       </div>
 
-
-      <!-- Weekly TOPS -->
+      <!-- WEEKLY TOPS -->
       <details open id="topsSection">
         <summary><b>Our Weekly TOPs</b></summary>
         <div class="row">
+
+          <!-- 🥇 Winner -->
           <div class="card">
             <h3>🥇 Winner</h3>
             <label>YouTube Video Link <input id="tops.0.video"></label>
-            <label>Image <input type="file" id="tops.0.image" accept="image/*"></label>
-            <img id="tops.0.preview" class="preview" alt="Preview">
-            <button class="upload" data-index="0">Upload Image</button>
+
+            <div class="img-url-box">
+              <label>Image URL</label>
+              <input id="tops.0.imageUrl" type="url" placeholder="Paste image link (e.g. https://example.com/image.jpg)">
+              <button class="preview-btn" data-preview="0">Preview</button>
+              <img id="tops.0.preview" class="preview" alt="Preview">
+            </div>
+
             <label>Name <input id="tops.0.name"></label>
-            <label>Route <input id="tops.0.route"></label>
+<label>Route Image Link <input id="tops.0.routeImage" placeholder="https://example.com/route1.jpg"></label>
+<label>Route Name <input id="tops.0.route" placeholder="Winner Top"></label>
             <label>Kilometers <input id="tops.0.km" type="number" min="0"></label>
           </div>
 
+          <!-- 🥈 Silver -->
           <div class="card">
             <h3>🥈 Silver</h3>
             <label>YouTube Video Link <input id="tops.1.video"></label>
-            <label>Image <input type="file" id="tops.1.image" accept="image/*"></label>
-            <img id="tops.1.preview" class="preview" alt="Preview">
-            <button class="upload" data-index="1">Upload Image</button>
+
+            <div class="img-url-box">
+              <label>Image URL</label>
+              <input id="tops.1.imageUrl" type="url" placeholder="Paste image link (e.g. https://example.com/image.jpg)">
+              <button class="preview-btn" data-preview="1">Preview</button>
+              <img id="tops.1.preview" class="preview" alt="Preview">
+            </div>
+
             <label>Name <input id="tops.1.name"></label>
-            <label>Route <input id="tops.1.route"></label>
+<label>Route Image Link <input id="tops.0.routeImage" placeholder="https://example.com/route1.jpg"></label>
+<label>Route Name <input id="tops.0.route" placeholder="Secound Top"></label>
             <label>Kilometers <input id="tops.1.km" type="number" min="0"></label>
           </div>
 
+          <!-- 🥉 Bronze -->
           <div class="card">
             <h3>🥉 Bronze</h3>
             <label>YouTube Video Link <input id="tops.2.video"></label>
-            <label>Image <input type="file" id="tops.2.image" accept="image/*"></label>
-            <img id="tops.2.preview" class="preview" alt="Preview">
-            <button class="upload" data-index="2">Upload Image</button>
+
+            <div class="img-url-box">
+              <label>Image URL</label>
+              <input id="tops.2.imageUrl" type="url" placeholder="Paste image link (e.g. https://example.com/image.jpg)">
+              <button class="preview-btn" data-preview="2">Preview</button>
+              <img id="tops.2.preview" class="preview" alt="Preview">
+            </div>
+
             <label>Name <input id="tops.2.name"></label>
-            <label>Route <input id="tops.2.route"></label>
+<label>Route Image Link <input id="tops.0.routeImage" placeholder="https://example.com/route1.jpg"></label>
+<label>Route Name <input id="tops.0.route" placeholder="3th Top"></label>
             <label>Kilometers <input id="tops.2.km" type="number" min="0"></label>
           </div>
+
         </div>
       </details>
 
@@ -83,11 +113,11 @@
                 <th>Phone</th>
                 <th>Message</th>
                 <th>Date</th>
-				<th>Attachment</th>
-				
-  </thead>
-  <tbody id="inbox"></tbody>
-</table>
+                <th>Attachment</th>
+              </tr>
+            </thead>
+            <tbody id="inbox"></tbody>
+          </table>
         </div>
       </details>
 
@@ -100,5 +130,26 @@
   </main>
 
   <script src="site-content-admin.js"></script>
+  <script>
+    // ---------- Preview buttons ----------
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.preview-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const index = btn.getAttribute('data-preview');
+          const input = document.getElementById(`tops.${index}.imageUrl`);
+          const img = document.getElementById(`tops.${index}.preview`);
+          const url = input.value.trim();
+
+          if (!url) {
+            alert('Please enter an image URL first!');
+            return;
+          }
+
+          img.src = url;
+          img.classList.add('shown');
+        });
+      });
+    });
+  </script>
 </body>
 </html>
