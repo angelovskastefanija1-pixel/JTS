@@ -23,3 +23,11 @@ document.getElementById('contactForm')?.addEventListener('submit', async (e) => 
     note.textContent = '⚠️ Error sending form';
   }
 });
+// 🔹 Mobile menu toggle
+const burger = document.getElementById('burger');
+const menu = document.getElementById('menu');
+if (burger && menu) {
+  burger.addEventListener('click', () => {
+    menu.classList.toggle('open');
+  });
+}
