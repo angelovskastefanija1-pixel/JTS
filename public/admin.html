@@ -2,39 +2,41 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Admin Panel - JTS Logistics INC</title>
+  <title>Admin - JTSforRender</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="admin.css">
 </head>
 <body>
-
-  <header>
-    <h1>JTS Logistics — Admin Panel</h1>
+  <header class="admin-header">
+    <h1>Admin Panel — JTSforRender</h1>
+    <div class="right">
+      <span id="role-pill" class="pill">Role: —</span>
+      <button id="logout">Logout</button>
+    </div>
   </header>
 
-  <!-- LOGIN SECTION -->
-  <main>
+  <main class="container">
     <section id="login-box" class="card">
       <h2>Login</h2>
       <label>Username <input id="u" value="admin"></label>
       <label>Password <input id="p" type="password" value="1234"></label>
       <button id="login">Login</button>
-      <p id="login-note"></p>
+      <p id="login-note" class="note"></p>
     </section>
 
-    <!-- ADMIN DASHBOARD -->
-    <section id="editor" style="display:none" class="card">
+    <section id="editor" class="card" style="display:none">
       <div class="topbar">
-        <div id="role-pill" class="pill"></div>
-        <button id="logout">Logout</button>
-        <button id="refresh">Reload Content</button>
+        <button id="refresh" onclick="loadAll()">Reload Content</button>
         <button id="save" class="primary">Save Changes</button>
       </div>
 
+      <details open id="pricingSection">
+        <summary><b>Pricing</b></summary>
+        <div id="pricingEditor"></div>
+      </details>
 
-      <!-- Weekly TOPS -->
       <details open id="topsSection">
-        <summary><b>Our Weekly TOPs</b></summary>
+        <summary><b>Weekly TOPs</b></summary>
         <div class="row">
           <div class="card">
             <h3>🥇 Winner</h3>
@@ -44,9 +46,8 @@
             <button class="upload" data-index="0">Upload Image</button>
             <label>Name <input id="tops.0.name"></label>
             <label>Route <input id="tops.0.route"></label>
-            <label>Kilometers <input id="tops.0.km" type="number" min="0"></label>
+            <label>Miles <input id="tops.0.km" type="number" min="0"></label>
           </div>
-
           <div class="card">
             <h3>🥈 Silver</h3>
             <label>YouTube Video Link <input id="tops.1.video"></label>
@@ -55,9 +56,8 @@
             <button class="upload" data-index="1">Upload Image</button>
             <label>Name <input id="tops.1.name"></label>
             <label>Route <input id="tops.1.route"></label>
-            <label>Kilometers <input id="tops.1.km" type="number" min="0"></label>
+            <label>Miles <input id="tops.1.km" type="number" min="0"></label>
           </div>
-
           <div class="card">
             <h3>🥉 Bronze</h3>
             <label>YouTube Video Link <input id="tops.2.video"></label>
@@ -66,35 +66,24 @@
             <button class="upload" data-index="2">Upload Image</button>
             <label>Name <input id="tops.2.name"></label>
             <label>Route <input id="tops.2.route"></label>
-            <label>Kilometers <input id="tops.2.km" type="number" min="0"></label>
+            <label>Miles <input id="tops.2.km" type="number" min="0"></label>
           </div>
         </div>
       </details>
 
-      <!-- INBOX SECTION -->
       <details open id="inboxSection">
-        <summary><b>Inbox Messages</b></summary>
-        <div class="inbox-wrapper">
-          <table id="inboxTable">
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Phone</th>
-                <th>Message</th>
-                <th>Date</th>
-				<th>Attachment</th>
-				
-  </thead>
-  <tbody id="inbox"></tbody>
-</table>
-        </div>
+        <summary><b>Inbox</b></summary>
+        <table class="table" id="table">
+          <thead>
+            <tr><th>Name</th><th>Email</th><th>Phone</th><th>Message</th><th>Date</th><th>Attachment</th></tr>
+          </thead>
+          <tbody id="inbox"></tbody>
+        </table>
       </details>
 
-      <!-- SITE PREVIEW -->
-      <details open>
+      <details open id="sitePreviewSection">
         <summary><b>Live Preview</b></summary>
-        <iframe id="sitePreview" src="/" width="100%" height="500" style="border:1px solid #ccc;border-radius:8px;"></iframe>
+        <iframe id="sitePreview" src="/" class="preview-frame"></iframe>
       </details>
     </section>
   </main>
