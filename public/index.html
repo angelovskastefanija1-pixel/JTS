@@ -17,6 +17,8 @@
       <img src="assets/logo.png" alt="JTS Logistics" class="logo">
       <span><strong>JTS Logistics</strong></span>
     </a>
+	</div>
+	<div>
     <nav class="menu" id="menu">
       <a href="#pricing">Pricing</a>
       <a href="#tops">Our Weekly TOPs</a>
@@ -25,7 +27,6 @@
       <a href="#process">Process Steps</a>
       <a href="#hero">Comercial</a>
     </nav>
-    <button class="burger" id="burger" aria-label="Open menu"><span></span><span></span><span></span></button>
   </div>
 </header>
 
@@ -479,7 +480,26 @@ chatToggle.onclick = () => {
   }
 };
 </script>
+<script>
+  // Highlight active menu link based on scroll position
+  const menuLinks = document.querySelectorAll('.menu a');
+  const sections = Array.from(menuLinks).map(link => {
+    const id = link.getAttribute('href');
+    return document.querySelector(id);
+  });
 
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach((section, i) => {
+      if (section && window.scrollY >= section.offsetTop - 120) {
+        current = section.getAttribute('id');
+      }
+    });
+    menuLinks.forEach(link => {
+      link.classList.toggle('active', link.getAttribute('href') === `#${current}`);
+    });
+  });
+</script>
 
 
 </body>

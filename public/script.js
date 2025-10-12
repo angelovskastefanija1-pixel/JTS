@@ -31,3 +31,5 @@ if (burger && menu) {
     menu.classList.toggle('open');
   });
 }
+
+
