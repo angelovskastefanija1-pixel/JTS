@@ -130,41 +130,7 @@ const uploadContact = multer({
   })
 });
 
-app.post('/api/contact', uploadContact.single('attachment'), async (req, res) => {
-  try {
-    const fullName = req.body.name?.trim() || req.body.fullName?.trim() || '(no name)';
-    const { email, phone, message } = req.body;
-    const file = req.file ? `/uploads/${req.file.filename}` : null;
 
-    const msgs = readJSON(MSG_FILE) || [];
-    const entry = { fullName, email, phone, message, attachment: file, createdAt: new Date().toISOString() };
-    msgs.push(entry);
-    writeJSON(MSG_FILE, msgs);
-
-    if (process.env.EMAIL_USER && process.env.EMAIL_PASS && process.env.NOTIFY_TO) {
-      const transporter = nodemailer.createTransport({
-        service: 'gmail',
-        auth: { user: process.env.EMAIL_USER, pass: process.env.EMAIL_PASS },
-      });
-
-      const mailOptions = {
-        from: `"JTS Logistics" <${process.env.EMAIL_USER}>`,
-        to: process.env.NOTIFY_TO,
-        subject: `New Driver Application - ${fullName}`,
-        text: `New driver application received:\n\nFull Name: ${fullName}\nEmail: ${email}\nPhone: ${phone}\n\nMessage:\n${message}`,
-        attachments: file ? [{ filename: path.basename(file), path: path.join(__dirname, 'public', file) }] : [],
-      };
-
-      await transporter.sendMail(mailOptions);
-      console.log(`📧 Email sent with${file ? '' : 'out'} attachment`);
-    }
-
-    res.json({ ok: true });
-  } catch (e) {
-    console.error('❌ contact error', e);
-    res.status(500).json({ ok: false, error: e.message });
-  }
-});
 
 app.use(express.urlencoded({ extended: true }));
 
@@ -177,25 +143,35 @@ app.get('/api/admin/messages', requireAuth, (_req, res) => {
       return res.json([]);
     }
 
-    // Normalize
+    // 🟢 Извади ги сите податоци што ги има секоја апликација
     const normalized = msgs.map(m => ({
-      fullName: m.fullName || '',
-      email: m.email || '',
-      phone: m.phone || '',
-      message: m.message || '',
-      createdAt: m.createdAt ? new Date(m.createdAt) : null
+      name: m["First Name"] && m["Last Name"]
+        ? `${m["First Name"]} ${m["Last Name"]}`
+        : m.fullName || '(no name)',
+      email: m.Email || m.email || '',
+      phone: m.Phone || m.phone || '',
+      licenseState: m["License State"] || '',
+      licenseNumber: m["License Number"] || '',
+      experience: m["Driving Experience"] || '',
+      employment: m["Employment History"] || '',
+      createdAt: m.createdAt
+        ? new Date(m.createdAt).toLocaleString()
+        : '(unknown)',
+      attachment: m.attachment || ''
     }));
 
-    // Sort by date desc
-    const sorted = normalized.sort((a, b) => (a.createdAt < b.createdAt ? 1 : -1));
+    // Сортирај по датум
+    const sorted = normalized.sort(
+      (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+    );
 
-    console.log('📬 Messages loaded:', sorted.length);
     res.json(sorted);
   } catch (err) {
     console.error('❌ Error reading messages:', err);
     res.status(500).json({ ok: false, error: err.message });
   }
 });
+
 
 
 
@@ -268,6 +244,49 @@ app.post('/api/admin/tops/:index/image', requireAuth, uploadSingle.single('image
     res.status(500).json({ ok: false, error: err.message });
   }
 });
+// 🟢 DRIVER APPLICATION FORM (full PDF-style)
+app.post('/api/apply', uploadContact.single('attachment'), async (req, res) => {
+  try {
+    const data = req.body;
+    const file = req.file ? `/uploads/${req.file.filename}` : null;
+
+    // 📨 формат за емаил
+    const htmlBody = `
+      <h3>🧾 New Driver Employment Application</h3>
+      <table border="1" cellspacing="0" cellpadding="5" style="border-collapse:collapse;">
+        ${Object.entries(data)
+          .map(([key, val]) => `<tr><td><b>${key}</b></td><td>${val || ''}</td></tr>`)
+          .join('')}
+      </table>
+      ${file ? `<p><b>Attachment:</b> ${file}</p>` : ''}
+    `;
+
+    // ✉️ праќање на маил (исто како сега)
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: { user: process.env.EMAIL_USER, pass: process.env.EMAIL_PASS },
+    });
+
+    await transporter.sendMail({
+      from: `"JTS Logistics Application" <${process.env.EMAIL_USER}>`,
+      to: [process.env.NOTIFY_TO, 'recruiting@jtslogistics.net'],
+      subject: `New Driver Application – ${data['First Name'] || 'No name'}`,
+      html: htmlBody,
+      attachments: file ? [{ path: path.join(__dirname, 'public', file) }] : [],
+    });
+
+    // 💾 снимање во messages.json
+    const msgs = readJSON(MSG_FILE) || [];
+    msgs.push({ ...data, attachment: file, createdAt: new Date().toISOString() });
+    writeJSON(MSG_FILE, msgs);
+
+    res.json({ ok: true });
+  } catch (err) {
+    console.error('❌ Driver application error:', err);
+    res.status(500).json({ ok: false, error: err.message });
+  }
+});
+
 
 
 app.get('*', (_req, res)=>res.sendFile(path.join(__dirname,'public','index.html')));

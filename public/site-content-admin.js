@@ -148,19 +148,17 @@ async function loadInbox() {
     msgs.forEach((msg) => {
       const tr = document.createElement('tr');
       tr.innerHTML = `
-        <td>${msg.fullName || '(no name)'}</td>
-        <td>${msg.email || ''}</td>
-        <td>${msg.phone || ''}</td>
-        <td>${(msg.message || '').replace(/</g, '&lt;')}</td>
-        <td>${new Date(msg.createdAt).toLocaleString()}</td>
-        <td>
-          ${
-            msg.attachment
-              ? `<a href="${msg.attachment}" target="_blank" rel="noopener" style="color:#00A6A6;font-weight:600;">📎 View</a>`
-              : '—'
-          }
-        </td>
-      `;
+  <td><b>${msg.name}</b></td>
+  <td>${msg.email}</td>
+  <td>${msg.phone}</td>
+  <td>${msg.licenseState || '-'}</td>
+  <td>${msg.licenseNumber || '-'}</td>
+  <td>${msg.experience || '-'}</td>
+  <td>${msg.employment || '-'}</td>
+  <td>${msg.createdAt}</td>
+  <td>${msg.attachment ? `<a href="${msg.attachment}" target="_blank" style="color:#00A6A6;font-weight:600;">📎 View</a>` : '—'}</td>
+`;
+
       tbody.appendChild(tr);
     });
   } catch (e) {
@@ -174,18 +172,19 @@ function getVal(id) {
   return el ? el.value : '';
 }
 
+// ---------- SAVE CHANGES ----------
 document.getElementById('save')?.addEventListener('click', async () => {
   const tops = [0, 1, 2].map(i => ({
     rank: ['Winner', 'Silver', 'Bronze'][i],
-    name: getVal(`tops.${i}.name`),
-    route: getVal(`tops.${i}.route`),
-    routeImage: getVal(`tops.${i}.routeImage`),
-    km: getVal(`tops.${i}.km`),
-    video: getVal(`tops.${i}.video`),
+    name: document.getElementById(`tops.${i}.name`)?.value || '',
+    route: document.getElementById(`tops.${i}.route`)?.value || '',
+    km: document.getElementById(`tops.${i}.km`)?.value || '',
+    video: document.getElementById(`tops.${i}.video`)?.value || '',
     image: document.getElementById(`tops.${i}.preview`)?.src || ''
   }));
 
   const payload = { ...window.CMS_CONTENT, tops };
+
   const res = await api('/api/admin/content', {
     method: 'PUT',
     body: JSON.stringify(payload),
@@ -195,8 +194,11 @@ document.getElementById('save')?.addEventListener('click', async () => {
     alert('✅ Saved successfully');
     const frame = document.getElementById('sitePreview');
     if (frame) frame.contentWindow.location.reload();
-  } else alert('❌ Save error');
+  } else {
+    alert('❌ Save error');
+  }
 });
+
 
 // ---------- ROUTE IMAGE PREVIEW ----------
 document.addEventListener('input', (e) => {

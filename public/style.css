@@ -127,6 +127,139 @@ html,body{margin:0;padding:0;font-family:Inter,system-ui,Segoe UI,Roboto,Arial,s
 .price-card.featured{box-shadow:0 12px 40px rgba(0,166,166,.18)}
 .note{color:var(--muted);margin-top:12px}
 
+/* Button for View Route */
+.view-route-btn,
+.view-pay-btn {
+  margin-top: 8px;
+  padding: 8px 14px;
+  background: #083978;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s;
+  display: block;
+  width: 100%;
+  text-align: center;
+}
+
+.view-route-btn:hover,
+.view-pay-btn:hover {
+  background: #052b61;
+}
+
+/* Различна боја за View Driver Pay */
+.view-pay-btn {
+  background: #00a651; /* зелена */
+}
+
+.view-pay-btn:hover {
+  background: #008f43;
+}
+
+.form-step {
+  display: none;
+  animation: fadeIn 0.4s ease;
+}
+.form-step.active {
+  display: block;
+}
+.next-btn, .prev-btn {
+  margin-top: 15px;
+  padding: 10px 20px;
+  background: #083978;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.3s ease;
+}
+.next-btn:hover, .prev-btn:hover {
+  background: #0a4f92;
+}
+
+/* Smooth step fade-in animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+/* ---------- HERO GALLERY ---------- */
+.hero-gallery {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+.gallery-img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+.gallery-img:hover {
+  transform: scale(1.03);
+}
+
+/* ---------- FULLSCREEN MODAL ---------- */
+.gallery-modal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  padding-top: 80px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: rgba(0,0,0,0.9);
+}
+.gallery-modal-content {
+  margin: auto;
+  display: block;
+  width: 90%;
+  max-width: 700px;
+  border-radius: 10px;
+}
+.close-gallery {
+  position: absolute;
+  top: 20px;
+  right: 40px;
+  color: #fff;
+  font-size: 35px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  padding: 16px;
+  color: white;
+  font-weight: bold;
+  font-size: 30px;
+  transition: 0.3s;
+  user-select: none;
+}
+.prev:hover, .next:hover { color: #00A6A6; }
+.prev { left: 20px; }
+.next { right: 20px; }
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 768px) {
+  .hero-gallery {
+    grid-template-columns: 1fr 1fr;
+  }
+  .gallery-img {
+    height: 120px;
+  }
+}
+
+
+
 /* TOPS grid */
 .tops-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:18px}
 .top-card{position:relative;border-radius:16px;border:1px solid var(--border);padding:18px;overflow:hidden;min-height:260px;background:var(--card);box-shadow:0 6px 18px rgba(2,6,23,.06)}

@@ -137,12 +137,22 @@ function renderTops(tops) {
     card.appendChild(media);
 
     // ---------- BODY ----------
-    const body = document.createElement('div');
-    body.innerHTML = `
-      <div class="rank">${rank === 'Winner' ? '🥇 Winner' : rank === 'Silver' ? '🥈 Silver' : '🥉 Bronze'}</div>
-      <div class="name">${t.name || '—'}</div>
-      <div class="meta">Route: ${t.route || '—'} · ${t.km || ''} miles</div>
-<button class="view-route-btn" data-img="${t.routeImage || ''}">View Route</button>    `;
+   const body = document.createElement('div');
+body.innerHTML = `
+  <div class="rank">
+    ${rank === 'Winner' ? '🥇 Winner' : rank === 'Silver' ? '🥈 Silver' : '🥉 Bronze'}
+  </div>
+  <div class="name">${t.name || '—'}</div>
+  <div class="meta">Route: ${t.route || '—'} · ${t.km || ''} miles</div>
+  <button class="view-route-btn" data-img="${t.routeImage || ''}">View Route</button>
+  ${rank === 'Winner'
+    ? `<button class="view-pay-btn" onclick="window.open('/uploads/Unit 812 Driver_Pay_Report.pdf', '_blank')">View Driver Pay</button>`
+    : ''
+  }
+`;
+
+
+
     card.appendChild(body);
 
     wrap.appendChild(card);
