@@ -64,7 +64,6 @@ html,body{margin:0;padding:0;font-family:Inter,system-ui,Segoe UI,Roboto,Arial,s
   gap: 14px;
   padding: 10px 0;
 }
-
 .menu a {
   display: inline-block;
   background: #f4f7fb;
@@ -178,6 +177,81 @@ html,body{margin:0;padding:0;font-family:Inter,system-ui,Segoe UI,Roboto,Arial,s
 }
 .next-btn:hover, .prev-btn:hover {
   background: #0a4f92;
+}
+
+.hero-section {
+  position: relative;
+  width: 100%;
+  height: 100vh;               /* цел екран */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+  color: white;
+  background: black;
+}
+
+/* Видео позадина */
+.hero-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.55);    /* затемнување за подобра читливост */
+  z-index: 0;
+  pointer-events: none;        /* да не може да се кликне */
+}
+
+/* Центриран текст */
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  padding: 20px;
+  animation: fadeInUp 1.2s ease forwards;
+}
+
+.hero-content h1 {
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 15px;
+}
+
+.hero-content p {
+  font-size: 1.3rem;
+  margin-bottom: 30px;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+/* Копчиња */
+.hero-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.hero-buttons .btn {
+  font-size: 1rem;
+  padding: 12px 26px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+/* Анимација */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Smooth step fade-in animation */
@@ -477,6 +551,125 @@ html,body{margin:0;padding:0;font-family:Inter,system-ui,Segoe UI,Roboto,Arial,s
   border-radius: 14px;
   padding: 30px;
 }
+/* ---------- EXTRA GALLERIES BELOW HERO ---------- */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+  margin-top: 20px;
+}
+
+.gallery-grid img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+}
+
+.gallery-grid img:hover {
+  transform: scale(1.04);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .gallery-grid img {
+    height: 130px;
+  }
+}
+
+/* ---------- PAGE LOADER ---------- */
+#page-loader {
+  position: fixed;
+  inset: 0;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 99999;
+  transition: opacity 0.4s ease;
+}
+
+#page-loader.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.loader-logo {
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+  margin-bottom: 10px;
+}
+
+.dots {
+  display: flex;
+  gap: 5px;
+  font-size: 28px;
+  font-weight: bold;
+  color: #083978;
+}
+
+.dots span {
+  opacity: 0.2;
+  animation: blink 1.2s infinite;
+}
+
+.dots span:nth-child(1) { animation-delay: 0s; }
+.dots span:nth-child(2) { animation-delay: 0.2s; }
+.dots span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes blink {
+  0%, 80%, 100% { opacity: 0.2; }
+  40% { opacity: 1; }
+}
+
+
+
+/* ---------- HOW IT WORKS SECTION BACKGROUND ---------- */
+#process {
+  position: relative;
+  background: url('/assets/how_it_works.jpeg') center/cover no-repeat;
+  background-size: 100%;
+  background-color: #1E2425;
+  color: #fff;
+  overflow: hidden;
+  text-align: center;
+  padding: 80px 0;
+}
+
+#process::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45); /* затемнување за подобра читливост */
+  z-index: 0;
+}
+
+#process * {
+  position: relative;
+  z-index: 1;
+}
+
+#process h2.section-title {
+  color: #white; /* бел наслов */
+}
+
+#process ol.steps li {
+  background: rgba(255, 255, 255, 0.12); /* транспарентни блокчиња */
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+}
+
+#process ol.steps span {
+  background: #00a6a6; /* боја за бројките */
+  color: #fff;
+}
+
 
 .hiring-img-link {
   display: block;
@@ -641,7 +834,7 @@ html,body{margin:0;padding:0;font-family:Inter,system-ui,Segoe UI,Roboto,Arial,s
 /* ---------- TAP FOR DETAILS (Pulse Effect) ---------- */
 .tap {
   font-size: 0.9rem;
-  color: #00994d;
+  color: #white;
   font-weight: 600;
   text-align: center;
   margin-top: 6px;
@@ -669,12 +862,50 @@ html,body{margin:0;padding:0;font-family:Inter,system-ui,Segoe UI,Roboto,Arial,s
   transform: translateY(-5px);
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
 }
+.price-card {
+  position: relative;
+  border-radius: 14px;
+  color: #fff;
+  overflow: hidden;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.7);
+}
+
+.price-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.45); /* затемнување за читливост */
+  z-index: 0;
+}
+
+.price-card * {
+  position: relative;
+  z-index: 1;
+}
 
 /* ---------- 10% per Load Card (Green Glow) ---------- */
 .price-card:nth-child(1) {
   border: 3px solid #00a651; /* base green */
   animation: greenGlow 3s ease-in-out infinite;
 }
+
+/* ✅ 1. Owner-Operator */
+.price-card:nth-child(1) {
+  background: url('/assets/payment.jpeg') center/cover no-repeat;
+}
+
+/* ✅ 2. IRP program */
+.price-card:nth-child(2) {
+  background: url('/assets/IRP.jpeg') center/cover no-repeat;
+}
+
+/* ✅ 3. Wide range of regions */
+.price-card:nth-child(3) {
+  background: url('/assets/regions.jpeg') center/cover no-repeat;
+}
+
+
+
 
 @keyframes greenGlow {
   0% {
@@ -797,5 +1028,19 @@ html,body{margin:0;padding:0;font-family:Inter,system-ui,Segoe UI,Roboto,Arial,s
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(-10px); }
   to { opacity: 1; transform: translateY(0); }
+}
+
+/* ✅ Само hero contact копчето */
+.contact-btn {
+  color: #fff !important;
+  font-weight: 700;
+  border: 2px solid #fff;
+  background: transparent;
+  transition: 0.3s;
+}
+
+.contact-btn:hover {
+  background: #fff;
+  color: #083978 !important;
 }
 

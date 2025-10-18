@@ -177,16 +177,7 @@ async function loadContent() {
     const c = await res.json();
 
     // HERO
-    document.getElementById('hero-title').textContent = c.hero?.title || '';
-    document.getElementById('hero-subtitle').textContent = c.hero?.subtitle || '';
-
-    const hb = document.getElementById('hero-bullets');
-    hb.innerHTML = '';
-    (c.hero?.bullets || []).forEach(b => {
-      const li = document.createElement('li');
-      li.textContent = b;
-      hb.appendChild(li);
-    });
+   
 
     // SERVICES
     const sc = document.getElementById('services-cards');
@@ -237,3 +228,8 @@ async function loadContent() {
 }
 
 loadContent();
+window.addEventListener('load', () => {
+  // Осигури дека содржината се прикажува правилно по вчитување
+  const activeSection = window.location.hash || '#hero';
+  showSection(activeSection);
+});

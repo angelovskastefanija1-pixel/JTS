@@ -32,4 +32,10 @@ if (burger && menu) {
   });
 }
 
+document.querySelectorAll('.gallery-grid img').forEach(img => {
+  img.addEventListener('click', () => {
+    modal.style.display = "block";
+    modalImg.src = img.src;
+  });
+});
 
