@@ -733,6 +733,8 @@ function setActiveMenu(targetId) {
 
 
   function showSection(id) {
+  const sections = document.querySelectorAll('main section');
+
   sections.forEach(s => {
     if ('#' + s.id === id) {
       s.style.display = 'block';
@@ -743,9 +745,17 @@ function setActiveMenu(targetId) {
     }
   });
 
-  // ако се прикажува некоја динамична секција — почекај 0.2s за да се осигури дека податоците се веќе наполнети
-  setTimeout(() => setActiveMenu(id), 200);
+  // ✅ автоматски скролај најгоре
+  window.scrollTo({
+    top: 0,
+    behavior: 'instant' // ако сакаш мазно скролање, смени во 'smooth'
+  });
+
+  // ✅ означи која секција е активна во менито
+  setActiveMenu(id);
 }
+
+
 
 });
 
