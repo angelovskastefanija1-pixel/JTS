@@ -324,7 +324,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const pc = document.getElementById('pricing-cards');
   const plans = [
     {
-      name: "10% per Load<BR> it's not a joke",
+      name: "10% per Load<BR> it's not a typo",
       price: "<BR><BR><BR>",
       text: `
         <strong>Offer for Owner Operators</strong><br><br>
@@ -789,16 +789,16 @@ function setActiveMenu(targetId) {
 
 </script>
 <script>
-document.addEventListener('DOMContentLoaded', () => {
-  const counters = document.querySelectorAll('.counter');
+document.addEventListener("DOMContentLoaded", () => {
+  const counters = document.querySelectorAll(".counter");
 
-  const startCounter = (counter) => {
-    const target = +counter.getAttribute('data-target');
-    const duration = +counter.getAttribute('data-duration') || 2000;
+  function startCounter(counter) {
+    const target = +counter.getAttribute("data-target");
+    const duration = +counter.getAttribute("data-duration") || 2000;
     const increment = target / (duration / 16);
     let count = 0;
 
-    const update = () => {
+    function update() {
       count += increment;
       if (count < target) {
         counter.textContent = Math.floor(count);
@@ -806,23 +806,42 @@ document.addEventListener('DOMContentLoaded', () => {
       } else {
         counter.textContent = target;
       }
-    };
+    }
     update();
-  };
+  }
 
-  // Користиме IntersectionObserver за мобилен и десктоп
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting && !entry.target.classList.contains('counted')) {
-        entry.target.classList.add('counted');
-        startCounter(entry.target);
-      }
-    });
-  }, { threshold: 0.5 }); // активира кога 50% од елементот е видлив
+  // 👉 Ако не се користи observer (на мобилен), стартувај веднаш кога страната е готова
+  let started = false;
 
-  counters.forEach(counter => observer.observe(counter));
+  function startAllCounters() {
+    if (!started) {
+      counters.forEach(startCounter);
+      started = true;
+    }
+  }
+
+  // Прво пробај со IntersectionObserver
+  try {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          startAllCounters();
+          observer.disconnect();
+        }
+      });
+    }, { threshold: 0.2 });
+
+    counters.forEach(c => observer.observe(c));
+  } catch (err) {
+    // Ако не е поддржан observer (некои мобилни), стартува веднаш
+    startAllCounters();
+  }
+
+  // ✅ Осигури се дека ќе стартува дури и ако counters се скриени под видео
+  setTimeout(startAllCounters, 2000);
 });
 </script>
+
 
 </body>
 </html>
