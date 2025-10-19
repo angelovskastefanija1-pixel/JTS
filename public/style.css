@@ -413,7 +413,34 @@ html,body{margin:0;padding:0;font-family:Inter,system-ui,Segoe UI,Roboto,Arial,s
   .menu a {
     flex: 0 0 auto;
   }
+  
 }
+
+@media (max-width: 768px) {
+  .menu {
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+    padding: 10px;
+    position: fixed;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: space-around;
+    width: 90%;
+  }
+
+  .menu a {
+    color: white;
+    font-weight: 600;
+    text-shadow: 0 0 5px rgba(255,255,255,0.6);
+  }
+}
+
+
+
  .menu.open{display:flex}
   .burger{display:block}
   .video-frame .yt{height:260px}
@@ -1044,3 +1071,81 @@ html,body{margin:0;padding:0;font-family:Inter,system-ui,Segoe UI,Roboto,Arial,s
   color: #083978 !important;
 }
 
+.hero-counters {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin-top: 20px;
+  color: #fff;
+  z-index: 5;
+}
+
+.counter-box {
+  margin: 20px 0;
+}
+
+.counter {
+  font-size: 60px;
+  font-weight: 800;
+  color: #ffffff;
+  text-shadow: 0 0 15px rgba(0,0,0,0.4);
+}
+
+.label {
+  font-size: 24px;
+  font-weight: 600;
+  margin-top: 8px;
+  text-transform: uppercase;
+}
+
+.subtext {
+  font-size: 22px;
+  font-weight: 500;
+  color: #e0e0e0;
+}
+
+.manager-name {
+  font-size: 36px;
+  font-weight: 800;
+  color: #00ffcc;
+  margin-top: 6px;
+}
+
+.contact-link {
+  font-size: 20px;
+  font-weight: bold;
+  color: #ffffff;
+  text-decoration: none;
+  border-bottom: 2px solid #00ffcc;
+  padding-bottom: 3px;
+}
+
+.contact-link:hover {
+  color: #00ffcc;
+}
+.hero-counters .counter {
+  background: linear-gradient(90deg, #083978, #00A6A6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 800;
+  text-shadow: none;
+}
+.hero-counters .label,
+.hero-counters .subtext,
+.hero-counters .manager-name,
+.hero-counters .contact-link {
+  color: #083978 !important;
+  text-shadow: none !important; /* ќе ја тргне темната сенка */
+}
+
+
+@media (max-width: 768px) {
+  .counter {
+    font-size: 40px;
+  }
+  .label, .subtext, .manager-name, .contact-link {
+    font-size: 18px;
+  }
+}
