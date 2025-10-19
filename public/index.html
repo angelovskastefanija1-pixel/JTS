@@ -788,6 +788,60 @@ function setActiveMenu(targetId) {
 
 
 </script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const counters = document.querySelectorAll(".counter");
+
+  function startCounter(counter) {
+    const target = +counter.getAttribute("data-target");
+    const duration = +counter.getAttribute("data-duration") || 2000;
+    const increment = target / (duration / 16);
+    let count = 0;
+
+    function update() {
+      count += increment;
+      if (count < target) {
+        counter.textContent = Math.floor(count);
+        requestAnimationFrame(update);
+      } else {
+        counter.textContent = target;
+      }
+    }
+    update();
+  }
+
+  // 👉 Ако не се користи observer (на мобилен), стартувај веднаш кога страната е готова
+  let started = false;
+
+  function startAllCounters() {
+    if (!started) {
+      counters.forEach(startCounter);
+      started = true;
+    }
+  }
+
+  // Прво пробај со IntersectionObserver
+  try {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          startAllCounters();
+          observer.disconnect();
+        }
+      });
+    }, { threshold: 0.2 });
+
+    counters.forEach(c => observer.observe(c));
+  } catch (err) {
+    // Ако не е поддржан observer (некои мобилни), стартува веднаш
+    startAllCounters();
+  }
+
+  // ✅ Осигури се дека ќе стартува дури и ако counters се скриени под видео
+  setTimeout(startAllCounters, 2000);
+});
+</script>
+
 
 </body>
 </html>

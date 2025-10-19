@@ -39,3 +39,4 @@ document.querySelectorAll('.gallery-grid img').forEach(img => {
   });
 });
 
+
