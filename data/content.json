@@ -97,29 +97,29 @@
   "tops": [
     {
       "rank": "Winner",
-      "name": "Martin Nikolov ",
-      "route": "Veles -> Skopje",
+      "name": "Daniel Brown ",
+      "route": "Arizona -> Texas",
       "routeImage": "https://www.printmaps.net/wp-content/uploads/2020/05/biking-route-map-1024x665.png",
-      "km": "39",
+      "km": "823",
       "video": "https://www.youtube.com/watch?v=mBLjJN61Cg8",
       "image": "https://lh3.googleusercontent.com/pw/AP1GczPor8E50a2T6st71zEtdNvuevmdG-R9c7KsmsxQhaI-oDR8zZKhpLLNaEiZI4m8JZO_lk6Nn2IwZDFA_z9jbi7YbQoCLMh0szJzDibFyMIDniXa2vE=w2400"
     },
     {
       "rank": "Silver",
-      "name": "Angel Ivanovski",
-      "route": "",
-      "routeImage": "",
-      "km": "28",
+      "name": "Jhon Williams",
+      "route": "Arizona -> California",
+      "routeImage": "https://www.printmaps.net/wp-content/uploads/2020/05/biking-route-map-1024x665.png",
+      "km": "735",
       "video": "https://www.youtube.com/watch?v=mABpgDl1DTU",
       "image": "https://lh3.googleusercontent.com/pw/AP1GczOk_s57T-6CBNRvjaji-QicKfLkcJcCYSf4OHTyNtj1PwbeKVQgY0k_BrS9aAbeJTW9jk8qgsu7qi7bY7JvXBRGXYDBROeRFCxi4lSrijJCvj7R8Ww=w2400"
     },
     {
       "rank": "Bronze",
-      "name": "Petko Petkov",
-      "route": "",
-      "routeImage": "",
-      "km": "12",
-      "video": "https://www.youtube.com/watch?v=UGSFEHOASdQ",
+      "name": "Dan Williams",
+      "route": "California -> Arizona",
+      "routeImage": "https://www.printmaps.net/wp-content/uploads/2020/05/biking-route-map-1024x665.png",
+      "km": "728",
+      "video": "https://www.youtube.com/shorts/SDHvi6szdZI",
       "image": "https://lh3.googleusercontent.com/pw/AP1GczOwyVW65a1q1mV8uyAoztFKlz1Twu36pdQ1c19Nevx7v5RpUad8SyjYb44hQ8ABMqHb2iAkz5gwqy3XWfa3p_yVvbGvmfuiv0_0wSBRtclZQkuZN_0=w2400"
     }
   ],

@@ -62,5 +62,37 @@
     "Employment History": "Driver at CompanyMK Trucks LLC",
     "attachment": "/uploads/1760635266921_Ai.pdf",
     "createdAt": "2025-10-16T17:21:10.329Z"
+  },
+  {
+    "First Name": "Martin",
+    "Last Name": "Nikolov",
+    "Phone": "38978395246",
+    "Email": "mar_nikolov@outlook.com",
+    "Date of Birth": "1994-06-02",
+    "Position": "Driver - Own truck",
+    "License State": "Arizona",
+    "License Number": "AZ1234432",
+    "License Class": "CDL",
+    "License Expiration": "2026-09-25",
+    "Driving Experience": "11",
+    "Employment History": "Cmpn Tst",
+    "attachment": "/uploads/1761470211418_CV_Angelovska_Nikolov_Stefanija.pdf",
+    "createdAt": "2025-10-26T09:16:53.666Z"
+  },
+  {
+    "First Name": "Martin",
+    "Last Name": "Nikolov",
+    "Phone": "38978395246",
+    "Email": "mar_nikolov@outlook.com",
+    "Date of Birth": "1994-06-02",
+    "Position": "Driver - Own truck tst",
+    "License State": "Arizona",
+    "License Number": "AZ1234432",
+    "License Class": "CDL",
+    "License Expiration": "2026-09-25",
+    "Driving Experience": "1",
+    "Employment History": "aa c",
+    "attachment": null,
+    "createdAt": "2025-10-26T09:19:20.638Z"
   }
 ]
