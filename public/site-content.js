@@ -8,16 +8,26 @@ function videoIdFromUrl(url = '') {
   try {
     if (!url) return null;
     const u = new URL(url);
+
+    // ✅ Поддршка за класични YouTube видеа
     if (u.hostname.includes('youtu.be')) return u.pathname.slice(1);
     const v = u.searchParams.get('v');
     if (v) return v;
+
+    // ✅ Поддршка за YouTube Shorts
+    if (u.pathname.startsWith('/shorts/')) {
+      return u.pathname.split('/shorts/')[1].split('?')[0];
+    }
+
     const m = url.match(/embed\/([a-zA-Z0-9_-]+)/);
     if (m) return m[1];
+
     return null;
   } catch (_) {
     return null;
   }
 }
+
 
 function embedUrlFromVideoLink(link) {
   const vid = videoIdFromUrl(link || '') || '';
@@ -131,6 +141,23 @@ function renderTops(tops) {
     iframe.setAttribute('allow', 'autoplay; encrypted-media');
     iframe.loading = 'lazy';
     iframe.allowFullscreen = true;
+// ❗ Ако видеото не се вчитува, сокриј го iframe за да не блокира кликови
+iframe.onerror = () => {
+  iframe.style.display = 'none';
+};
+iframe.addEventListener('error', () => {
+  iframe.style.display = 'none';
+});
+iframe.addEventListener('load', () => {
+  // YouTube CORS: не пристапуваме до документот, само проверуваме дали src е валиден
+  if (!iframe.src.includes('embed/')) {
+    iframe.style.display = 'none';
+  }
+});
+
+if (!t.video || !t.video.trim()) {
+  iframe.remove(); // ќе го тргне iframe-от ако нема видео
+}
 
     media.appendChild(img);
     media.appendChild(iframe);
