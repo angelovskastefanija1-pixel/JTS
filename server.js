@@ -20,6 +20,11 @@ const UPLOADS_DIR = path.join(__dirname, 'public', 'uploads');
 if (!fs.existsSync(UPLOADS_DIR)) fs.mkdirSync(UPLOADS_DIR, { recursive: true });
 if (!fs.existsSync(DATA_DIR)) fs.mkdirSync(DATA_DIR, { recursive: true });
 
+app.get("/ads.txt", (req, res) => {
+  res.type("text/plain");
+  res.send("google.com, pub-6409664270423748, DIRECT, f08c47fec0942fa0");
+});
+
 // Helpers
 function readJSON(file) {
   try { return JSON.parse(fs.readFileSync(file,'utf8')||'null'); } catch(e){ return null; }
