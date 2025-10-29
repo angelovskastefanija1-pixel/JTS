@@ -22,7 +22,7 @@ if (!fs.existsSync(DATA_DIR)) fs.mkdirSync(DATA_DIR, { recursive: true });
 
 app.get("/ads.txt", (req, res) => {
   res.type("text/plain");
-  res.send("google.com, pub-6409664270423748, DIRECT, f08c47fec0942fa0");
+  res.send("google.com, pub-3056189620469898, DIRECT, f08c47fec0942fa0");
 });
 
 // Helpers
